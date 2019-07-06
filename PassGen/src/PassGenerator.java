@@ -52,22 +52,26 @@ public class PassGenerator {
         return ch;
     }
     public String generate(){
-        String currentPass = "";
+        if(!(!specSimvol&&!bigLathin&&!lathin&&!numbers)) {
 
-        setHaveFalse();
+            String currentPass = "";
 
-        while(currentPass.length()<lengthPass){
-            char currentSymbol = 0;
-            if (requiredHave()<(lengthPass-currentPass.length())){
-                currentSymbol = pGenerate();
-            } else{
-                currentSymbol = requiredGenerate();
+            setHaveFalse();
+
+            while (currentPass.length() < lengthPass) {
+                char currentSymbol = 0;
+                if (requiredHave() < (lengthPass - currentPass.length())) {
+                    currentSymbol = pGenerate();
+                } else {
+                    currentSymbol = requiredGenerate();
+                }
+                if (currentSymbol != 0)
+                    currentPass = currentPass + currentSymbol;
+
             }
-            if (currentSymbol!=0)
-            currentPass = currentPass+currentSymbol;
-
+            return currentPass;
         }
-        return currentPass;
+        return "Error";
     }
     private int requiredHave(){
         int count = 0;
